@@ -1,0 +1,12 @@
+graph TD
+  A[apps/backend]
+  A --> B[src/modules]
+  B --> C[forms/]
+  B --> D[pir/]
+  B --> E[auth/]
+  A --> F[src/lib]
+  A --> G[src/services]
+  H[packages/]
+  H --> H1[shared-types/]
+  H --> H2[shared-zod-schemas/]
+  H --> H3[event-bus/]

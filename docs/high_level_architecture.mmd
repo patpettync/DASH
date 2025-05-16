@@ -1,0 +1,41 @@
+graph TD
+  A[Frontend (Next.js App Router)]
+  A --> B[Kong API Gateway]
+
+  subgraph Modules
+    C[Forms Module]
+    D[PIR Module]
+    E[Auth Module]
+    F[ERP Module (Future)]
+  end
+
+  B --> C
+  B --> D
+  B --> E
+  B --> F
+
+  subgraph Shared Services
+    G[Notification Service]
+    H[Logging Service]
+    I[Event Bus]
+    J[Zod Schema Library]
+  end
+
+  G --> C
+  G --> D
+  H --> C
+  H --> D
+  I --> C
+  I --> D
+  J --> C
+  J --> D
+
+  C --> K[(PostgreSQL)]
+  D --> K
+  E --> K
+
+  C --> L[Redis]
+  D --> L
+
+  M[Grafana / Loki] --> H
+  N[Cursor AI] --> B

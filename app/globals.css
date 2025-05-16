@@ -1,0 +1,1021 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base theme colors */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+
+    /* Sidebar variables */
+    --sidebar-width: 200px;
+    --sidebar-width-collapsed: 60px;
+
+    /* Transition variables */
+    --transition-color: 0.3s ease;
+    --transition-color-fast: 0.2s ease;
+    --transition-color-slow: 0.5s ease;
+    --transition-transform: 0.2s ease;
+    --transition-opacity: 0.2s ease;
+
+    /* Brand color variables - these will be dynamically set by BrandProvider */
+    --brand-primary: #6837f1;
+    --brand-primary-foreground: #ffffff;
+    --brand-secondary: #3a86ff;
+    --brand-secondary-foreground: #ffffff;
+    --brand-primary-10: rgba(104, 55, 241, 0.1);
+    --brand-primary-20: rgba(104, 55, 241, 0.2);
+    --brand-primary-50: rgba(104, 55, 241, 0.5);
+    --brand-secondary-10: rgba(58, 134, 255, 0.1);
+    --brand-secondary-20: rgba(58, 134, 255, 0.2);
+    --brand-secondary-50: rgba(58, 134, 255, 0.5);
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 70%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.9%;
+
+    /* Brand color variables remain the same in dark mode - they're set dynamically */
+    /* We don't override them here to maintain brand consistency across themes */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Container Layout Utility */
+  .container-layout {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px; /* spacing.sm */
+    padding-right: 16px; /* spacing.sm */
+  }
+
+  @media (min-width: 640px) {
+    .container-layout {
+      padding-left: 24px; /* spacing.md */
+      padding-right: 24px; /* spacing.md */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-layout {
+      padding-left: 32px; /* spacing.lg */
+      padding-right: 32px; /* spacing.lg */
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container-layout {
+      padding-left: 40px; /* spacing.xl */
+      padding-right: 40px; /* spacing.xl */
+    }
+  }
+}
+
+/* Custom background pattern */
+.bg-pattern {
+  background-color: #f8f8f8;
+  background-image: radial-gradient(#ddd 1.5px, transparent 1.5px);
+  background-size: 30px 30px;
+  background-position: -5px -5px;
+  transition: background-color 0.3s ease, background-image 0.3s ease;
+}
+
+.dark .bg-pattern {
+  background-color: #1a1a1a; /* Updated to match grayscale theme */
+  background-image: radial-gradient(#333 1.5px, transparent 1.5px);
+}
+
+/* Custom styles for the sidebar */
+.sidebar-collapsed {
+  width: var(--sidebar-width-collapsed);
+}
+
+.sidebar-expanded {
+  width: var(--sidebar-width);
+}
+
+/* Brand color utility classes */
+.text-brand-primary {
+  color: var(--brand-primary);
+  transition: color var(--transition-color);
+}
+
+.text-brand-secondary {
+  color: var(--brand-secondary);
+  transition: color var(--transition-color);
+}
+
+.bg-brand-primary {
+  background-color: var(--brand-primary);
+  transition: background-color var(--transition-color);
+}
+
+.bg-brand-secondary {
+  background-color: var(--brand-secondary);
+  transition: background-color var(--transition-color);
+}
+
+.bg-brand-primary-10 {
+  background-color: var(--brand-primary-10);
+  transition: background-color var(--transition-color);
+}
+
+.bg-brand-primary-20 {
+  background-color: var(--brand-primary-20);
+  transition: background-color var(--transition-color);
+}
+
+.bg-brand-secondary-10 {
+  background-color: var(--brand-secondary-10);
+  transition: background-color var(--transition-color);
+}
+
+.bg-brand-secondary-20 {
+  background-color: var(--brand-secondary-20);
+  transition: background-color var(--transition-color);
+}
+
+.border-brand-primary {
+  border-color: var(--brand-primary);
+  transition: border-color var(--transition-color);
+}
+
+.border-brand-secondary {
+  border-color: var(--brand-secondary);
+  transition: border-color var(--transition-color);
+}
+
+.hover\:bg-brand-primary:hover {
+  background-color: var(--brand-primary);
+  transition: background-color var(--transition-color);
+}
+
+.hover\:bg-brand-primary-10:hover {
+  background-color: var(--brand-primary-10);
+  transition: background-color var(--transition-color);
+}
+
+.hover\:text-brand-primary:hover {
+  color: var(--brand-primary);
+  transition: color var(--transition-color);
+}
+
+.focus\:border-brand-primary:focus {
+  border-color: var(--brand-primary);
+  transition: border-color var(--transition-color);
+}
+
+.focus\:ring-brand-primary:focus {
+  --tw-ring-color: var(--brand-primary);
+  transition: --tw-ring-color var(--transition-color);
+}
+
+/* Progress bar styles */
+.progress-bar {
+  height: 0.5rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  background-color: #f1f5f9;
+  transition: background-color var(--transition-color);
+}
+
+.dark .progress-bar {
+  background-color: #262626;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width var(--transition-color), background-color var(--transition-color);
+}
+
+/* Tab transitions */
+.tab-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.tab-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.tab-transition-exit {
+  opacity: 1;
+}
+
+.tab-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* Smooth transitions for all interactive elements */
+a,
+button,
+input,
+select,
+textarea {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Add a subtle pulse animation for active elements */
+@keyframes subtle-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+.dark {
+  @keyframes subtle-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(255, 255, 255, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
+}
+
+.pulse-on-active:active {
+  animation: subtle-pulse 0.8s ease-out;
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.5s ease-out forwards;
+  }
+
+  .animate-fade-down {
+    animation: fadeDown 0.5s ease-out forwards;
+  }
+
+  .animate-fade-left {
+    animation: fadeLeft 0.5s ease-out forwards;
+  }
+
+  .animate-fade-right {
+    animation: fadeRight 0.5s ease-out forwards;
+  }
+
+  .animate-zoom-in {
+    animation: zoomIn 0.5s ease-out forwards;
+  }
+
+  .animate-zoom-out {
+    animation: zoomOut 0.5s ease-out forwards;
+  }
+
+  .animate-bounce-subtle {
+    animation: bounceSlight 2s infinite;
+  }
+
+  .hover-lift {
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .hover-scale {
+    transition: transform 0.2s ease-out;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+
+  .interactive {
+    @apply transition-all duration-200 hover:brightness-105 active:brightness-95 active:scale-[0.98];
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 2s linear infinite;
+  }
+
+  .animate-dash {
+    animation: dash 1.5s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+
+  .animate-ping-slow {
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite linear;
+  }
+
+  .animate-left-to-right {
+    animation: leftToRight 2s infinite ease-in-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceSlight {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Logo spin animation */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Logo pulse animation */
+@keyframes logo-pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Spin animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dash animation for SVG circle */
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 283;
+  }
+  50% {
+    stroke-dashoffset: 70;
+  }
+  100% {
+    stroke-dashoffset: 283;
+  }
+}
+
+/* Ping animation */
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75%,
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Left to right animation for the loading effect */
+@keyframes leftToRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Theme transition */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+/* Ensure all elements transition smoothly */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Dark mode card styles - updated to grayscale */
+.dark .bg-white {
+  background-color: #121212;
+}
+
+.dark .bg-gray-50 {
+  background-color: #1a1a1a;
+}
+
+.dark .bg-gray-100 {
+  background-color: #262626;
+}
+
+.dark .bg-gray-200 {
+  background-color: #333333;
+}
+
+.dark .border-gray-200 {
+  border-color: #333333;
+}
+
+.dark .border-gray-300 {
+  border-color: #404040;
+}
+
+.dark .border-gray-700 {
+  border-color: #262626;
+}
+
+.dark .text-gray-400 {
+  color: #a3a3a3;
+}
+
+.dark .text-gray-500 {
+  color: #737373;
+}
+
+.dark .text-gray-600 {
+  color: #a3a3a3;
+}
+
+.dark .text-gray-700 {
+  color: #d4d4d4;
+}
+
+.dark .bg-gray-700 {
+  background-color: #333333;
+}
+
+.dark .bg-gray-800 {
+  background-color: #262626;
+}
+
+.dark .bg-gray-900 {
+  background-color: #1a1a1a;
+}
+
+.dark .bg-gray-950 {
+  background-color: #121212;
+}
+
+.dark .hover\:bg-gray-700:hover {
+  background-color: #333333;
+}
+
+.dark .hover\:bg-gray-800:hover {
+  background-color: #262626;
+}
+
+.dark .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.dark .shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.dark .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* No scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Dark mode notification styles - updated to grayscale */
+.dark .bg-blue-900\/20 {
+  background-color: rgba(38, 38, 38, 0.5);
+}
+
+.dark .text-blue-400 {
+  color: #d4d4d4;
+}
+
+.dark .text-blue-300 {
+  color: #e5e5e5;
+}
+
+.dark .text-blue-500 {
+  color: #a3a3a3;
+}
+
+.dark .text-blue-600 {
+  color: #e5e5e5;
+}
+
+.dark .bg-blue-600 {
+  background-color: #737373;
+}
+
+.dark .hover\:text-blue-300:hover {
+  color: #f5f5f5;
+}
+
+.dark .hover\:text-blue-700:hover {
+  color: #f5f5f5;
+}
+
+.dark .hover\:text-gray-200:hover {
+  color: #e5e5e5;
+}
+
+.dark .hover\:text-gray-300:hover {
+  color: #f5f5f5;
+}
+
+.dark .hover\:text-white:hover {
+  color: #ffffff;
+}
+
+.dark .text-gray-200 {
+  color: #e5e5e5;
+}
+
+.dark .text-gray-300 {
+  color: #d4d4d4;
+}
+
+.dark .text-white {
+  color: #ffffff;
+}
+
+/* Additional grayscale overrides for dark mode */
+.dark .bg-blue-50 {
+  background-color: #1a1a1a;
+}
+
+.dark .bg-blue-100 {
+  background-color: #262626;
+}
+
+.dark .bg-blue-200 {
+  background-color: #333333;
+}
+
+.dark .bg-blue-300 {
+  background-color: #404040;
+}
+
+.dark .bg-blue-400 {
+  background-color: #4d4d4d;
+}
+
+.dark .bg-blue-500 {
+  background-color: #666666;
+}
+
+.dark .bg-blue-700 {
+  background-color: #404040;
+}
+
+.dark .bg-blue-800 {
+  background-color: #333333;
+}
+
+.dark .bg-blue-900 {
+  background-color: #262626;
+}
+
+.dark .border-blue-200 {
+  border-color: #333333;
+}
+
+.dark .border-blue-300 {
+  border-color: #404040;
+}
+
+.dark .border-blue-400 {
+  border-color: #4d4d4d;
+}
+
+.dark .border-blue-500 {
+  border-color: #666666;
+}
+
+.dark .border-blue-600 {
+  border-color: #737373;
+}
+
+.dark .border-blue-700 {
+  border-color: #404040;
+}
+
+.dark .border-blue-800 {
+  border-color: #333333;
+}
+
+.dark .hover\:bg-blue-600:hover {
+  background-color: #737373;
+}
+
+.dark .hover\:bg-blue-700:hover {
+  background-color: #404040;
+}
+
+.dark .hover\:bg-blue-800:hover {
+  background-color: #333333;
+}
+
+.dark .hover\:border-blue-600:hover {
+  border-color: #737373;
+}
+
+.dark .focus\:border-blue-500:focus {
+  border-color: #666666;
+}
+
+.dark .focus\:ring-blue-500:focus {
+  --tw-ring-color: #666666;
+}
+
+/* Ensure indigo colors are also grayscale in dark mode */
+.dark .bg-indigo-50 {
+  background-color: #1a1a1a;
+}
+
+.dark .bg-indigo-100 {
+  background-color: #262626;
+}
+
+.dark .bg-indigo-200 {
+  background-color: #333333;
+}
+
+.dark .bg-indigo-300 {
+  background-color: #404040;
+}
+
+.dark .bg-indigo-400 {
+  background-color: #4d4d4d;
+}
+
+.dark .bg-indigo-500 {
+  background-color: #666666;
+}
+
+.dark .bg-indigo-600 {
+  background-color: #737373;
+}
+
+.dark .bg-indigo-700 {
+  background-color: #404040;
+}
+
+.dark .bg-indigo-800 {
+  background-color: #333333;
+}
+
+.dark .bg-indigo-900 {
+  background-color: #262626;
+}
+
+.dark .text-indigo-400 {
+  color: #d4d4d4;
+}
+
+.dark .text-indigo-500 {
+  color: #a3a3a3;
+}
+
+.dark .text-indigo-600 {
+  color: #e5e5e5;
+}
+
+.dark .border-indigo-500 {
+  border-color: #666666;
+}
+
+.dark .hover\:bg-indigo-600:hover {
+  background-color: #737373;
+}
+
+.dark .hover\:text-indigo-500:hover {
+  color: #a3a3a3;
+}
+
+/* Ensure purple colors are also grayscale in dark mode */
+.dark .bg-purple-50 {
+  background-color: #1a1a1a;
+}
+
+.dark .bg-purple-100 {
+  background-color: #262626;
+}
+
+.dark .bg-purple-500 {
+  background-color: #666666;
+}
+
+.dark .bg-purple-600 {
+  background-color: #737373;
+}
+
+.dark .text-purple-500 {
+  color: #a3a3a3;
+}
+
+.dark .text-purple-600 {
+  color: #e5e5e5;
+}
+
+.dark .border-purple-500 {
+  border-color: #666666;
+}
+
+.dark .hover\:bg-purple-600:hover {
+  background-color: #737373;
+}
+
+.dark .hover\:text-purple-500:hover {
+  color: #a3a3a3;
+}
+
+/* Additional grayscale overrides for any remaining colored elements */
+.dark .ring-blue-500 {
+  --tw-ring-color: #666666;
+}
+
+.dark .ring-indigo-500 {
+  --tw-ring-color: #666666;
+}
+
+.dark .ring-purple-500 {
+  --tw-ring-color: #666666;
+}
+
+.dark .from-blue-500 {
+  --tw-gradient-from: #666666;
+}
+
+.dark .to-blue-700 {
+  --tw-gradient-to: #404040;
+}
+
+.dark .from-indigo-500 {
+  --tw-gradient-from: #666666;
+}
+
+.dark .to-indigo-700 {
+  --tw-gradient-to: #404040;
+}
+
+.dark .from-purple-500 {
+  --tw-gradient-from: #666666;
+}
+
+.dark .to-purple-700 {
+  --tw-gradient-to: #404040;
+}
+
+/* Ensure any SVG fills are also grayscale in dark mode */
+.dark svg[fill="#3a86ff"],
+.dark svg[fill="#6837f1"] {
+  fill: #737373;
+}
+
+.dark svg[stroke="#3a86ff"],
+.dark svg[stroke="#6837f1"] {
+  stroke: #737373;
+}
+
+/* Ensure any inline styles with blue colors are overridden in dark mode */
+.dark [style*="color: #3a86ff"],
+.dark [style*="color: #6837f1"],
+.dark [style*="color:#3a86ff"],
+.dark [style*="color:#6837f1"] {
+  color: #737373 !important;
+}
+
+.dark [style*="background-color: #3a86ff"],
+.dark [style*="background-color: #6837f1"],
+.dark [style*="background-color:#3a86ff"],
+.dark [style*="background-color:#6837f1"] {
+  background-color: #737373 !important;
+}
+
+.dark [style*="border-color: #3a86ff"],
+.dark [style*="border-color: #6837f1"],
+.dark [style*="border-color:#3a86ff"],
+.dark [style*="border-color:#6837f1"] {
+  border-color: #737373 !important;
+}
+
+/* Fix for light mode text color */
+.light {
+  color: #000000;
+}
+
+/* Badge colors for dark mode */
+.dark .bg-green-50 {
+  background-color: rgba(34, 197, 94, 0.1);
+}
+
+.dark .text-green-700 {
+  color: #86efac;
+}
+
+.dark .border-green-200 {
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.dark .bg-green-900\/20 {
+  background-color: rgba(20, 83, 45, 0.2);
+}
+
+.dark .text-green-300 {
+  color: #86efac;
+}
+
+.dark .border-green-800 {
+  border-color: rgba(22, 101, 52, 0.5);
+}

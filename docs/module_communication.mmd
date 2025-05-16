@@ -1,0 +1,7 @@
+graph LR
+  A[Forms Module] -- Emits Event --> B[Event Bus]
+  B -- Subscribes --> C[PIR Module]
+  B -- Subscribes --> D[Notification Service]
+  A -- API Call --> E[Auth Module]
+  F[Cursor] -- Replaces Placeholders --> A
+  F --> C
