@@ -4,8 +4,6 @@
 
 DASH is a modern, modular administrative platform designed to replace Smartsheet-based workflows with a scalable, internally-hosted application. Built with React, Next.js, and Shadcn UI, DASH aims to provide municipal staff with a cohesive system for managing forms, requests, and administrative processes.
 
-![Dashboard Preview](public/placeholder.jpg)
-
 ## ✨ Current State
 
 This repository contains the **frontend prototype** of DASH, featuring:
